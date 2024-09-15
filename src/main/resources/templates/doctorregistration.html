@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--=== Coding by CodingLab | www.codinglabweb.com === -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" th:href="@{/css/registrationstyle.css}">
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Responsive Regisration Form </title> 
+    <style>
+    
+      .required::before {
+  content: "*";
+  color: red;
+}
+
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+.text-center {
+    text-align: center !important;
+}
+  
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>Registration</header>
+         <div th:if="${message}" class="alert alert-danger text-center" role="alert">
+    <p th:text="${message}"></p>
+   </div>
+        <form action="/doctor/registration" method="post" th:object="${doctorObject}">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label class = "required">Full Name</label>
+                            <input type="text" pattern = "^[A-Za-z ]{0,50}$" title = "Enter name not using more than 50 character and only use character" placeholder="Enter your name" name="doctorPersonalDetailsModel.fullname" required>
+                        </div>
+                        
+                             <div class="input-field">
+                            <label class = "required">Gender</label>
+                            <select name="doctorPersonalDetailsModel.gender" required>
+                                <option value = "">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option> 
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label class = "required">Date of Birth</label>
+                            <input type="date" placeholder="Enter birth date" name="doctorPersonalDetailsModel.dob" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label class = "required">Gmail</label>
+                            <input type="text" pattern=".+@gmail\.com" size="30" maxlength="40" title="Please enter a valid email address (e.g., user@gmail.com)" placeholder="Enter your email" name="doctorPersonalDetailsModel.gmail" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label class = "required">Mobile Number</label>
+                            <input type="text" pattern="^\d{10}$" title="Enter 10 digit phone number" placeholder="Enter mobile number" name="doctorPersonalDetailsModel.phonenumber" required>
+                        </div>
+                        <div class="input-field">
+                            <label class = "required">Address</label>
+                            <input type="text" pattern = "^.{0,50}$" title = "Enter address not using more that 50 character" placeholder="Enter your address" name="doctorPersonalDetailsModel.address" required>
+                        </div>
+
+                
+                    </div>
+                </div>
+
+                <div class="details ID">
+                    <span class="title">Study Details</span>
+
+
+
+
+                    <div class="fields">
+                    
+                           <div class="input-field">
+                            <label class = "required">Medical Degree</label>
+                            <select name="doctorStudyDetailsModel.degree" required>
+                                <option value = "">Select your medical degree</option>
+                                <option>MBBS</option>
+                                <option>MDS</option>
+                                <option>BAMS</option>
+                                
+                                <option>BUMS</option>
+                                <option>BHMS</option>
+                                <option>BYNS</option>
+                                <option>B.V.Sc & AH</option>
+                                
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label class = "required">Degree marks</label>
+                            <input type="text" pattern = "^([0-9]\.[0-9]{1,2}|10|10\.0)$" title = "Enter valid CGPA from 0.0 to 10.0" placeholder="Enter your degree marks" name="doctorStudyDetailsModel.cgpa"  required>
+                        </div>
+
+                       
+
+                        <div class="input-field">
+                            <label class = "required">Specialist</label>
+                            <select name="doctorStudyDetailsModel.specialist"required>
+                                <option value = "">Select specialization</option>
+                                <option>Neurologists</option>
+                                <option>Dermatologists</option>
+                                <option>Ophthalmologists</option>
+                                <option>Cardiologists</option>
+                                <option>Endocrinologists</option>
+                                <option>Gastroenterologists</option>
+                                <option>Nephrologists</option>
+                                <option>Urologists</option>
+                                <option>Pulmonologists</option>
+                                <option>Otolaryngologists</option>
+                                <option>Psychiatrists</option>
+                                <option>Oncologists</option>                         
+                                <option>Radiologists</option>
+                                <option>Rheumatologists</option>
+                                <option>Anesthesiologists</option>
+                                <optgroup>Other</optgroup>
+                        
+                                
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label class = "required">Grade</label>
+                            <input type="text" pattern = "[A-F][+-]?$|^F" title = "Enter the valid Grade" placeholder="Enter your degree grade" name="doctorStudyDetailsModel.grade" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label class = "required">Pass out year</label>
+                            <input type="text" pattern="(?:20|19)\d{2}" title = "Enter valid year" placeholder="Enter your pass out year" name="doctorStudyDetailsModel.passoutyear" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label class = "required">Experience</label>
+                            <input type="text" pattern ="[1-5]?[0-9]" title = "Only 60 years experience" placeholder="Enter your experience in year" name="doctorStudyDetailsModel.experience"  required>
+                        </div>
+
+                        
+                      
+                    </div>
+                    
+
+                    <div class="buttons">
+                        
+                        <button class="sumbit">
+                            <span class="btnText">Submit</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                    </div>
+                </div> 
+            </div>
+             <input type="hidden" th:field="*{id}">
+             <input type="hidden" th:field="*{email}">
+             <input type="hidden" th:field="*{password}">
+             <input type="hidden" th:field="*{authorized}">
+
+            
+        </form>
+    </div>
+
+</body>
+</html>

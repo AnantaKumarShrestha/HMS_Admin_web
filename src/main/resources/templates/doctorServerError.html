@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+    <title>Full Background Image</title>
+    <style>
+        /* Apply the background image to the body */
+  
+ .background-image-container {
+    width: 1000px; /* Set the width of the div (adjust as needed) */
+    height: 740px;/* Set the height of the div (adjust as needed) */
+    background-image: url('images/server_error.jpg');
+    background-size: cover; /* Scale the image to cover the entire background */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    background-position: center center; /* Center the image horizontally and vertically */
+    overflow-y: hidden; /* Disable vertical scroll */
+    
+    }
+    
+    
+    
+    .con {
+    width: 100vw; /* Set the container width to the full viewport width */
+    height: 100vh; /* Set the container height to the full viewport height */
+    display: flex;
+    justify-content: center; /* Horizontally center the children elements */
+    align-items: center; /* Vertically center the children elements */
+} 
+        
+    </style>
+</head>
+<body>
+
+<div class="hero_area">
+    <!-- header section strats -->
+     <th:block th:insert="doctor_header.html"></th:block>
+    <!-- end header section -->
+    
+  </div>
+  
+  
+  <div class="con">
+<div class="background-image-container">
+        <!-- Content of the div goes here -->
+    </div>
+    </div>
+      <!-- info section -->
+ <th:block th:insert="doctor_footer.html"></th:block>
+  <!-- end info_section -->
+    
+ <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://html.design/">Free Html Templates</a>
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+</body>
+</html>

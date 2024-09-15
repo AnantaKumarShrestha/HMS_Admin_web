@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign up Form</title>
+<link rel="stylesheet" href="" th:href="@{/css/signupstyle.css}">
+<style>
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+.text-center {
+    text-align: center !important;
+}
+
+.input-field {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 15px;
+        }
+
+        .input-field input {
+            width: 100%;
+            padding-right: 40px; /* Adjust based on the image size */
+            box-sizing: border-box;
+        }
+
+        .input-field img {
+            position: absolute;
+            right: 5px;
+            top: 40%;
+            transform: translateY(-50%);
+            cursor: pointer; /* Optional: to indicate that the image is clickable */
+            width: 30px;
+            height: 30px;
+        }
+</style>
+</head>
+<body>
+
+ <div class="container">
+      <header style="text-align: center;">Doctor Signup</header>
+      
+        <div th:if="${same_username_found}" class="alert alert-danger text-center" role="alert">
+    <p th:text="${same_username_found}"></p>
+   </div>
+   
+      <form action="/doctor/signup" method="post">
+    <!--    <p style="color: red">[[${same_username_found}]]</p> -->
+      
+      <div class="field email-field">
+          <div class="input-field">
+            <input type="text" pattern=".+@gmail\.com" size="30" maxlength="40" title="Please enter a valid email address (e.g., user@gmail.com)" placeholder="Enter your email" class="fname" id="fname" name="email" required/>
+          </div>
+        </div>
+        
+       
+
+        
+        <div class="field create-password">
+          <div class="input-field">
+            <input
+              type="password"
+              placeholder="Create password"
+              class="password"
+              pattern=".{8,}"
+              title="Minimum 8 character"
+              id="password"
+              name="password"
+              required
+            />
+            
+            <img alt="" id="eyeicon" src="/images/eye_close.png">
+     
+           
+          
+            <i class="bx bx-hide show-hide"></i>
+          </div>
+          <span class="error password-error">
+            <i class="bx bx-error-circle error-icon"></i>
+            <p class="error-text">
+              Please enter atleast 8 charatcer with number, symbol, small and
+              capital letter.
+            </p>
+          </span>
+          
+        </div>
+        
+        <div class="field confirm-password">
+          <div class="input-field">
+            <input
+              type="password"
+              placeholder="Confirm password"
+              pattern=".{8,}"
+              title="Minimum 8 character"
+              class="cPassword"
+              id="conpassword"
+              name="conpassword"
+              required
+            />
+            <img alt="" id="coneyeicon" src="/images/eye_close.png">
+     
+           
+         
+            <i class="bx bx-hide show-hide"></i>
+          </div> 
+          <span class="error cPassword-error">
+            <i class="bx bx-error-circle error-icon"></i>
+            <p class="error-text">Password don't match</p>
+          </span>
+        </div>
+        <div class="input-field button">
+          <input type="submit" value="Submit Now" />
+        </div>
+
+        <div class="signin_link">
+          Do you have an account? <a href="/doctor/login" onclick="login_page()">Signin</a>
+          <br>
+          <a href="/">Home page</a>
+        </div>
+      </form>
+    </div>
+    
+     <script>
+      let eyeicon = document.getElementById("eyeicon");
+      let password = document.getElementById("password");
+
+      eyeicon.onclick = function() {
+          if (password.type === "password") {
+              password.type = "text";
+              eyeicon.src = "/images/eye_open.png";
+          } else {
+              password.type = "password";
+              eyeicon.src = "/images/eye_close.png"; 
+          }
+      }
+      
+      
+      let coneyeicon = document.getElementById("coneyeicon");
+      let conpassword = document.getElementById("conpassword");
+
+      coneyeicon.onclick = function() {
+          if (conpassword.type === "password") {
+              conpassword.type = "text";
+              coneyeicon.src = "/images/eye_open.png";
+          } else {
+              conpassword.type = "password";
+              coneyeicon.src = "/images/eye_close.png"; 
+          }
+      }
+    </script>
+</body>
+</html>

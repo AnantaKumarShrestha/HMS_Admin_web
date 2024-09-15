@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Form</title>
+<link rel="stylesheet" th:href="@{/css/loginstyle.css}">
+<style>
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+.text-center {
+    text-align: center !important;
+}
+ .input-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 15px;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding-right: 40px; /* Adjust based on the image size */
+            box-sizing: border-box;
+        }
+
+        .input-container img {
+            position: absolute;
+            right: 5px;
+            top: 40%;
+            transform: translateY(-50%);
+            cursor: pointer; /* Optional: to indicate that the image is clickable */
+            width: 30px;
+            height: 30px;
+        }
+   
+</style>
+</head>
+<body>
+  <div th:if="${successMessage}" class="alert alert-success text-center" role="alert">
+    <p th:text="${successMessage}"></p>
+   </div>
+  <div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+
+      <header>Admin Login</header>
+      <form action="/admin/login" method="post">
+      <p style="color: red">[[${admin_error}]]</p>
+      <input type="text"  pattern=".+@gmail\.com" size="30" maxlength="40" title="Please enter a valid email address (e.g., user@gmail.com)" placeholder="Enter your email" id="email" name="email" required>
+ 
+        <div class="input-container">
+        <input type="password" pattern=".{8,}" title="Minimum 8 character" placeholder="Enter your password" id="password" name="password" required>
+        <img alt="" id="eyeicon" src="/images/eye_close.png">
+        </div>
+        <a href="/admin/forgot">Forgot password?</a>
+        <input type="submit" class="button" value="Login">
+        <div class="signup">
+            <a href="/">Home page</a>
+          
+        </div>
+
+      </form>
+      
+    </div>
+  </div>
+  
+      <script>
+      let eyeicon = document.getElementById("eyeicon");
+      let password = document.getElementById("password");
+
+      eyeicon.onclick = function() {
+          if (password.type === "password") {
+              password.type = "text";
+              eyeicon.src = "/images/eye_open.png"; // Update to open eye icon
+          } else {
+              password.type = "password";
+              eyeicon.src = "/images/eye_close.png"; // Update to closed eye icon
+          }
+      }
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+
+<style type="text/css">
+.book_section .ko {
+  padding: 35px 45px;
+  -webkit-box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.07);
+}
+
+.book_section .ko label {
+  color: #000000;
+}
+
+.book_section .ko .custom-input {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #00c6a9;
+  height: 45px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 5px;
+  padding: 0 15px;
+}
+
+.book_section .ko .custom-input::-webkit-input-placeholder {
+  color: #00c6a9;
+}
+
+.book_section .ko .custom-input:-ms-input-placeholder {
+  color: #00c6a9;
+}
+
+.book_section .ko .custom-input::-ms-input-placeholder {
+  color: #00c6a9;
+}
+
+.book_section .ko .custom-input::placeholder {
+  color: #00c6a9;
+}
+
+.book_section .ko #inputDate {
+  color: #00c6a9;
+}
+
+.book_section .ko #inputDate input {
+  color: #00c6a9;
+}
+
+
+</style>
+
+</head>
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- header section strats -->
+     <th:block th:insert="admin_header.html"></th:block>
+    <!-- end header section -->
+  </div>
+
+  <!-- team section -->
+
+
+
+
+    <!-- book section-->
+
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+        <div class="ko">
+        <div class="cen">
+            <h4>
+              DOCTOR<span> REQUEST LIST</span>
+            </h4>
+            </div>
+              <table class="table table-stripted">
+    <thead>
+    <tr>
+    <th>Full Name</th>
+    <th>DOB</th>
+    <th>Address</th>
+    <th>Phone Number</th>
+    <th>Action</th>
+ 
+    </tr>
+    </thead>
+    
+    <tbody>
+    
+ <tr th:each="doctor:${doctor_list}">
+ 
+  <!-- <td th:text="${doctor.doctorPersonalDetailsModel.fullname}"></td>
+    <td th:text="${doctor.doctorPersonalDetailsModel.dob}"></td>
+    <td th:text="${doctor.doctorPersonalDetailsModel.address}"></td>
+    <td th:text="${doctor.doctorPersonalDetailsModel.phonenumber}"></td> -->  
+    
+    
+    <td th:if="${doctor.doctorPersonalDetailsModel != null}" th:text="${doctor.doctorPersonalDetailsModel.fullname}"></td>
+<td th:if="${doctor.doctorPersonalDetailsModel != null}" th:text="${doctor.doctorPersonalDetailsModel.dob}"></td>
+<td th:if="${doctor.doctorPersonalDetailsModel != null}" th:text="${doctor.doctorPersonalDetailsModel.address}"></td>
+<td th:if="${doctor.doctorPersonalDetailsModel != null}" th:text="${doctor.doctorPersonalDetailsModel.phonenumber}"></td>
+    
+    
+    <td th:if="${doctor.doctorPersonalDetailsModel != null}">
+    <a th:href="@{/viewDoctorRequestDetails(id=${doctor.id})}"><input type="submit" value="View" class="btn btn-primary"></a>
+    <a th:href="@{/acceptDoctor(id=${doctor.id})}"><input type="submit" value="Accept" class="btn btn-success"></a>   
+ 
+    <a th:href="@{/deleteRequestDoctor(id=${doctor.id})}"><input type="submit" value="Delete" class="btn btn-danger"></a>
+
+    </td>
+    </tr>
+ 
+   
+    
+    </tbody>
+    
+    
+    </table>
+    </div>
+        </div>
+      </div>
+    </div>
+  </section> 
+
+
+  <!-- end book section -->
+
+  <!-- end team section -->
+
+
+  <!-- info section -->
+ <th:block th:insert="admin_footer.html"></th:block>
+  <!-- end info_section -->
+
+
+
+
+</body>
+</html>

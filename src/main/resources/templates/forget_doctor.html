@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign up Form</title>
+<link rel="stylesheet" href="" th:href="@{/css/signupstyle.css}">
+</head>
+<body>
+ 
+
+ <div class="container">
+  <div th:if="${error}" class="alert alert-danger text-center" role="alert">
+    <p th:text="${error}"></p>
+   </div>
+      <header style="text-align: center;">Forgot Password</header>
+      <form action="/forgot_doctor_password" method="post">
+
+        <div class="field create-password">
+          <div class="input-field">
+            <input
+              type="Email"
+              placeholder="Email"
+              name="email"
+              required
+            />
+            <i class="bx bx-hide show-hide"></i>
+          </div>
+        </div>
+   
+        <div class="input-field button">
+          <input type="submit" value="Submit Now" />
+        </div>
+        
+
+       
+      </form>
+    </div>
+</body>
+</html>
